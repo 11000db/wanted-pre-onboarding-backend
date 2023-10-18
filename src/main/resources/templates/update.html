@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>update</title>
+</head>
+<body>
+<form action="/emp/update" method="post" name="updateForm">
+  <input type="hidden" name="id" th:value="${empUpdate.id}">
+  회사명: <input type="text" name="companyId" th:value="${empUpdate.companyId}" readonly><br>
+  pass: <input type="text" name="pass" id="pass"> <br>
+  국가: <input type="text" name="nation" id="nation"> <br>
+  지역: <input type="text" name="area" id="area"> <br>
+  채용포지션: <input type="text" name="position" id="position"> <br>
+  채용보상금: <input type="text" name="compensation" id="compensation"> <br>
+  사용기술: <input type="text" name="skill" id="skill"> <br>
+  채용내용: <input type="text" name="contents" id="contents"> <br>
+  <input type="button" value="글수정" onclick="empUpdate()">
+</form>
+<script th:inline="javascript">
+  const empUpdate = () => {
+  const pass = [[${empUpdate.pass}]]; // 문자열로 변환
+  const inputPass = document.getElementById("pass").value;
+  if (pass == inputPass) { // 수정이 아닌 추가가 되는 현상을 해결하기 위해 '===' 연산자를 사용
+    document.updateForm.submit();
+    } else {
+      alert("비밀번호가 일치하지 않습니다!");
+    }
+  }
+</script>
+</body>
+</html>

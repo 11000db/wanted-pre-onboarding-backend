@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>list</title>
+</head>
+<body>
+  <table>
+    <tr>
+      <th>id</th>
+      <th>회사명</th>
+      <th>국가</th>
+      <th>지역</th>
+      <th>채용포지션</th>
+      <th>채용보상금</th>
+      <th>사용기술</th>
+
+    </tr>
+    <tr th:each="emp: ${empList}">
+      <td><a th:href="@{|/emp/${emp.id}|}" th:text="${emp.id}"></a></td>
+      <td th:text="${emp.companyId}"></td>
+      <td th:text="${emp.nation}"></td>
+      <td th:text="${emp.area}"></td>
+      <td th:text="${emp.position}"></td>
+      <td th:text="${emp.compensation}"></td>
+      <td th:text="${emp.skill}"></td>
+    </tr>
+  </table>
+  <a th:href="@{/}" class="button">홈으로</a>
+</body>
+</html>

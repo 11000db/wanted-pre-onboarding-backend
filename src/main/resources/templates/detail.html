@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>detail</title>
+</head>
+<body>
+<h1>Employee Details</h1>
+  <table>
+    <tr>
+      <th>채용공고id</th>
+      <th>회사명</th>
+      <th>국가</th>
+      <th>지역</th>
+      <th>채용포지션</th>
+      <th>채용보상금</th>
+      <th>사용기술</th>
+      <th>채용내용</th>
+    </tr>
+    <tr th:if="${emp != null}">
+      <td th:text="${emp.id}"></td>
+      <td th:text="${emp.companyId}"></td>
+      <td th:text="${emp.nation}"></td>
+      <td th:text="${emp.area}"></td>
+      <td th:text="${emp.position}"></td>
+      <td th:text="${emp.compensation}"></td>
+      <td th:text="${emp.skill}"></td>
+      <td th:text="${emp.contents}"></td>
+    </tr>
+    <tr th:if="${emp == null}">
+      <td colspan="7">Employee not found.</td>
+    </tr>
+  </table>
+<button onclick="listReq()">목록</button>
+<button onclick="updateReq()">수정</button>
+<button onclick="deleteReq()">삭제</button>
+
+<script>
+  const listReq = () => {
+      console.log("목록 요청");
+      location.href = "/emp/";
+  };
+
+  const updateReq = () => {
+      console.log("수정 요청");
+      const id = [[${emp.id}]];
+      if (id) {
+          location.href = "/emp/update/" + id;
+      } else {
+          console.log("ID is not available.");
+      }
+  };
+
+  const deleteReq = () => {
+      console.log("삭제 요청");
+      const id = [[${emp.id}]];
+      if (id) {
+          location.href = "/emp/delete/" + id;
+      } else {
+          console.log("ID is not available.");
+      }
+  };
+</script>
+</body>
+</html>
